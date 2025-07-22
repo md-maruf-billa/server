@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import { AppError } from '../utils/app_error';
 import { configs } from '../configs';
-import { jwtHelpers, JwtPayloadType } from '../utils/JWT';
 import { Account_Model } from '../modules/auth/auth.schema';
+import { AppError } from '../utils/app_error';
+import { jwtHelpers, JwtPayloadType } from '../utils/JWT';
 
 
 type Role = "ADMIN" | "USER"
@@ -11,7 +11,7 @@ type Role = "ADMIN" | "USER"
 const auth = (...roles: Role[]) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const token = req.headers.authorization;
+            const token = req?.cookies?.accessToken;
             if (!token) {
                 throw new AppError('You are not authorize!!', 401);
             }

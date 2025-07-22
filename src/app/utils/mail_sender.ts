@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport({
 // ✅ Email Sender Function
 const sendMail = async (payload: TMailContent) => {
     const info = await transporter.sendMail({
-        from: 'info@digitalcreditai.com',
+        from: 'support.oyoubuilder@gmail.com',
         to: payload.to,
         subject: payload.subject,
         text: payload.textBody,
@@ -69,7 +69,7 @@ const sendMail = async (payload: TMailContent) => {
                 style=" margin-top: 60px; text-align: center;">
                 
                     <img style="width: 50px; height: 50px; border-radius: 50%;"
-                        src="https://i.postimg.cc/3xbYnK6y/Whats-App-Image-2025-07-13-at-6-33-49-AM.jpg"
+                        src="https://collection.cloudinary.com/dzsh25p5b/5ae8432d8f36e9609696ccc53391694e"
                         alt="">
                
                 <p style="font-size: 12px;">The Support Team</p>

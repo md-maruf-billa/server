@@ -1,16 +1,15 @@
-import { AppError } from "../../utils/app_error";
-import { TAccount, TLoginPayload, TRegisterPayload } from "./auth.interface";
-import { Account_Model } from "./auth.schema";
-import httpStatus from 'http-status';
 import bcrypt from "bcrypt";
+import httpStatus from 'http-status';
+import { JwtPayload, Secret } from "jsonwebtoken";
+import mongoose from "mongoose";
+import { configs } from "../../configs";
+import { AppError } from "../../utils/app_error";
+import { jwtHelpers } from "../../utils/JWT";
+import sendMail from "../../utils/mail_sender";
 import { TUser } from "../user/user.interface";
 import { User_Model } from "../user/user.schema";
-import mongoose from "mongoose";
-import { jwtHelpers } from "../../utils/JWT";
-import { configs } from "../../configs";
-import { JwtPayload, Secret } from "jsonwebtoken";
-import sendMail from "../../utils/mail_sender";
-import { Request } from "express";
+import { TAccount, TLoginPayload, TRegisterPayload } from "./auth.interface";
+import { Account_Model } from "./auth.schema";
 // register user
 const register_user_into_db = async (payload: TRegisterPayload) => {
     const session = await mongoose.startSession();
@@ -53,8 +52,7 @@ const register_user_into_db = async (payload: TRegisterPayload) => {
             '5m'
         );
         const verificationLink = `${configs.jwt.front_end_url}/verified-account?token=${verifiedToken}`;
-        // Commit the transaction
-        await session.commitTransaction();
+
         await sendMail({
             to: payload?.email,
             subject: "Thanks for creating account!",
@@ -76,6 +74,8 @@ const register_user_into_db = async (payload: TRegisterPayload) => {
             <p>If you did not create this account, please ignore this email.</p>
             `
         })
+        // Commit the transaction
+        await session.commitTransaction();
         return newAccount;
     } catch (error) {
         await session.abortTransaction();
