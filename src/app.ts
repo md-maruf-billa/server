@@ -1,16 +1,16 @@
-import express, { Request, Response } from 'express'
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import globalErrorHandler from './app/middlewares/global_error_handler'
-import notFound from './app/middlewares/not_found_api'
-import cookieParser from 'cookie-parser'
-import appRouter from './routes'
+import express, { Request, Response } from 'express';
+import globalErrorHandler from './app/middlewares/global_error_handler';
+import notFound from './app/middlewares/not_found_api';
+import appRouter from './routes';
 
 // define app
 const app = express()
 
 // middleware
 app.use(cors({
-    origin: ["http://localhost:5173","https://www.oyoubuilder.com","https://oyoubuilder.com"],
+    origin: ["http://localhost:5173", "https://www.oyoubuilder.com", "https://oyoubuilder.com"],
     credentials: true
 }))
 app.use(express.json({ limit: "100mb" }))

@@ -1,5 +1,4 @@
 import httpStatus from 'http-status';
-import { configs } from "../../configs";
 import catchAsync from "../../utils/catch_async";
 import manageResponse from "../../utils/manage_response";
 import { auth_services } from "./auth.service";
@@ -18,8 +17,10 @@ const login_user = catchAsync(async (req, res) => {
     const result = await auth_services.login_user_from_db(req.body);
 
     res.cookie('accessToken', result.accessToken, {
-        secure: configs.env == 'production',
+        secure: true,
         httpOnly: true,
+        sameSite: "lax",
+        maxAge: 1000 * 60 * 60 * 24,
     });
     manageResponse(res, {
         statusCode: httpStatus.OK,
