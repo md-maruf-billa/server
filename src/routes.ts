@@ -4,6 +4,7 @@ import landingPageRouter from './app/modules/landingPage/landingPage.route';
 import orderRouter from './app/modules/order/order.route';
 import planRoute from './app/modules/plan/plan.route';
 import userRoute from './app/modules/user/user.route';
+import dashboardRouter from './app/modules/dashboard/dashboard.route';
 
 
 const appRouter = Router();
@@ -13,7 +14,8 @@ const moduleRoutes = [
     { path: "/user", route: userRoute },
     { path: "/landing-page", route: landingPageRouter },
     { path: "/plan", route: planRoute },
-    { path: "/order", route: orderRouter }
+    { path: "/order", route: orderRouter },
+    {path:"/dashboard",route:dashboardRouter}
 
 
 

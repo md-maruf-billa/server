@@ -66,6 +66,12 @@ const updateShippingFee = z.object({
     label: z.string().min(1, 'Label is required'),
     value: z.number().nonnegative('Value must be 0 or more'),
 })
+
+const updateScriptCodes = z.object({
+    scriptCode: z.string().optional(),
+    noScriptCode: z.string().optional(),
+})
+
 const schema = z.object({
     owner: z.string({ required_error: "Owner is required" }).optional(),
     basicInfo: z.object({
@@ -131,5 +137,6 @@ export const landingPage_validation = {
     updateReviews,
     updateVideo,
     updateFeatures,
-    updateShippingFee
+    updateShippingFee,
+    updateScriptCodes
 }

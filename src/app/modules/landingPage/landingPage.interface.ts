@@ -1,5 +1,5 @@
 type TShippingFee = {
-    _id?:string;
+    _id?: string;
     label: string,
     value: number,
 }
@@ -49,5 +49,7 @@ export type TLandingPage = {
     };
     shippingFee?: TShippingFee[]
     totalSold: number;
-    pageStatus: 'active' | 'block'
+    pageStatus: 'active' | 'block';
+    scriptCode?: string;
+    noScriptCode?: string
 }

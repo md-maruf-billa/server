@@ -154,6 +154,17 @@ const delete_landing_page = catchAsync(async (req, res) => {
         data: result
     })
 })
+
+// add script codes
+const add_script_codes = catchAsync(async (req, res) => {
+    const result = await landing_page_services.add_script_codes_into_db(req)
+    manageResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: "Script added successful.",
+        data: result
+    })
+})
 export const landing_page_controllers = {
     create_new_landing_page,
     upload_logo,
@@ -168,5 +179,6 @@ export const landing_page_controllers = {
     update_landing_page_features,
     update_landing_page_shipping_fee,
     delete_landing_page_shipping_fee,
-    delete_landing_page
+    delete_landing_page,
+    add_script_codes
 }

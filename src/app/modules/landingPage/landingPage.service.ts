@@ -1,10 +1,10 @@
 import { Request } from "express";
 import httpStatus from 'http-status';
+import mongoose from "mongoose";
 import { AppError } from "../../utils/app_error";
 import uploadCloud from "../../utils/cloudinary";
 import { OrderModel } from "../order/order.schema";
 import { LandingPageModel } from "./landingPage.schema";
-import mongoose from "mongoose";
 
 // create new landing page
 const create_new_landing_page_into_db = async (req: Request) => {
@@ -304,6 +304,22 @@ const delete_landing_page_from_db = async (req: Request) => {
         throw error;
     }
 };
+const add_script_codes_into_db = async (req: Request) => {
+    const user = req?.user;
+    const { pageId } = req?.params;
+    const webInfo = await LandingPageModel.findOne({ owner: user?.email, _id: pageId });
+    if (!webInfo) {
+        throw new AppError("Page not found!", httpStatus.NOT_FOUND);
+    }
+    const result = await LandingPageModel.findOneAndUpdate({ owner: user?.email, _id: pageId }, {
+        scriptCode: req?.body?.scriptCode || webInfo?.scriptCode,
+        noScriptCode: req?.body?.noScriptCode || webInfo?.noScriptCode
+    }, { new: true })
+    return result
+};
+
+
+
 export const landing_page_services = {
     create_new_landing_page_into_db,
     upload_logo_into_db,
@@ -318,5 +334,6 @@ export const landing_page_services = {
     update_landing_page_features_into_db,
     update_landing_page_shipping_fee_into_db,
     delete_landing_page_sipping_fee_from_db,
-    delete_landing_page_from_db
+    delete_landing_page_from_db,
+    add_script_codes_into_db
 }

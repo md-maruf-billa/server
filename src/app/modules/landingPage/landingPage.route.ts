@@ -126,4 +126,5 @@ landingPageRouter.delete(
     auth("USER", "ADMIN"),
     landing_page_controllers.delete_landing_page
 )
+landingPageRouter.post("/add-script/:pageId", auth("ADMIN", "USER"), RequestValidator(landingPage_validation.updateScriptCodes), landing_page_controllers.add_script_codes)
 export default landingPageRouter;
