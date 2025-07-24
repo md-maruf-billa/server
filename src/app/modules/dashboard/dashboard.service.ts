@@ -16,6 +16,7 @@ const get_dashboard_overview_from_db = async (req: Request) => {
 
     // Step 3: Prepare order queries
     const allOrdersQuery = OrderModel.find({ pageId: { $in: landingPageIds } }).sort("-createdAt").lean();
+    const shippedOrderQueryAll = OrderModel.find({ pageId: { $in: landingPageIds }, status: "shipped" }).sort("-createdAt").lean();
     const pendingOrdersQuery = OrderModel.find({ pageId: { $in: landingPageIds }, status: "pending" })
         .sort("-createdAt")
         .limit(10)
@@ -26,14 +27,15 @@ const get_dashboard_overview_from_db = async (req: Request) => {
         .lean();
 
     // Step 4: Run all 3 order queries in parallel
-    const [orders, pendingOrders, shippedOrders] = await Promise.all([
+    const [orders, pendingOrders, shippedOrders, shippedOrder] = await Promise.all([
         allOrdersQuery,
         pendingOrdersQuery,
-        shippedOrdersQuery
+        shippedOrdersQuery,
+        shippedOrderQueryAll
     ]);
 
     // Step 5: Calculate total sales
-    const totalSeal = orders.reduce((acc, order) => acc + Number(order.totalPrice || 0), 0);
+    const totalSeal = shippedOrder.reduce((acc, order) => acc + Number(order.totalPrice || 0), 0);
 
     // Final Return
     return {

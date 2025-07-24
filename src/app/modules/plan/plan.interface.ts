@@ -1,8 +1,10 @@
 export type TPlan = {
     name: string;
     price: string;
+    offerPrice?: string;
     duration: number;
-    durationUnit: "month" | "year"
+    durationUnit: "months" | "year"
     pros: string[];
     cons: string[];
+    isPopular?: boolean;
 }

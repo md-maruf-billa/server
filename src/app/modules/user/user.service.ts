@@ -1,7 +1,7 @@
-import { Request } from "express"
+import { Request } from "express";
 import uploadCloud from "../../utils/cloudinary";
-import { User_Model } from "./user.schema";
 import { Account_Model } from "../auth/auth.schema";
+import { User_Model } from "./user.schema";
 
 const update_profile_into_db = async (req: Request) => {
     // upload file and get link
@@ -11,7 +11,7 @@ const update_profile_into_db = async (req: Request) => {
     };
 
     const isExistUser = await Account_Model.findOne({ email: req?.user?.email }).lean()
-    const result = await User_Model.findOneAndUpdate({ accountId: isExistUser!._id }, req?.body)
+    const result = await User_Model.findOneAndUpdate({ accountId: isExistUser!._id }, req?.body, { new: true })
     return result
 }
 
