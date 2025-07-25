@@ -57,6 +57,7 @@ const landingPageSchema = new Schema<TLandingPage>({
     },
     scriptCode: { type: String, required: false },
     noScriptCode: { type: String, required: false },
+    templateId: { type: Number, default: 1 }
 }, { timestamps: true, versionKey: false });
 
 export const LandingPageModel = model('landing-page', landingPageSchema);

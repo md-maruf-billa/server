@@ -51,5 +51,6 @@ export type TLandingPage = {
     totalSold: number;
     pageStatus: 'active' | 'block';
     scriptCode?: string;
-    noScriptCode?: string
+    noScriptCode?: string;
+    templateId?: number
 }

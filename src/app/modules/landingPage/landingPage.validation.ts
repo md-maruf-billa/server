@@ -22,6 +22,7 @@ const update = z.object({
         pageAddress: z.string().optional(),
         pageLogo: z.string().optional(),
     }),
+    templateId: z.number().optional()
 })
 const uploadProduct = z.object({
     product: z.object({
@@ -71,60 +72,6 @@ const updateScriptCodes = z.object({
     scriptCode: z.string().optional(),
     noScriptCode: z.string().optional(),
 })
-
-const schema = z.object({
-    owner: z.string({ required_error: "Owner is required" }).optional(),
-    basicInfo: z.object({
-        pageName: z.string().optional(),
-        pageType: z.string().optional(),
-        pageEmail: z.string().email().optional(),
-        pageNumber: z.string().optional(),
-        pageCountry: z.string().optional(),
-        pageAddress: z.string().optional(),
-        pageLogo: z.string().optional(),
-    }),
-
-    banner: z.object({
-        bannerImage: z.string().optional(),
-        bannerTitle: z.string().optional(),
-        bannerDescription: z.string().optional(),
-    }),
-
-    product: z.object({
-        name: z.string().optional(),
-        price: z.string().optional(),
-        offer: z.string().optional(),
-        description: z.string().optional(),
-    }),
-
-    productGallery: z.object({
-        title: z.string().optional(),
-        productImages: z.array(z.string()).optional(),
-    }),
-
-    productVideo: z.object({
-        title: z.string().optional(),
-        videoLink: z.string().optional(),
-    }),
-
-    features: z.object({
-        title: z.string().optional(),
-        featureImage: z.string().optional(),
-        content: z.array(z.string()).optional(),
-    }),
-
-    reviews: z.object({
-        title: z.string().optional(),
-        images: z.array(z.string()).optional(),
-    }),
-
-    setting: z.object({
-        language: z.enum(['english', 'bangla']).default('english'),
-        productSoldCount: z.boolean().optional(),
-    }),
-
-    totalSold: z.number().default(0),
-});
 
 
 

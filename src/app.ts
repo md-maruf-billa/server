@@ -10,7 +10,14 @@ const app = express()
 
 // middleware
 app.use(cors({
-    origin: ["http://localhost:5173", "https://www.oyoubuilder.com", "https://oyoubuilder.com"],
+    origin: [
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "https://www.store.oyoubuilder.com",
+        "https://store.oyoubuilder.com",
+        "https://www.oyoubuilder.com",
+        "https://oyoubuilder.com"
+    ],
     credentials: true
 }))
 app.use(express.json({ limit: "100mb" }))

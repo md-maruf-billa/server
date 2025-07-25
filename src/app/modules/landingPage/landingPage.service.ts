@@ -32,6 +32,7 @@ const update_landing_page_data_into_db = async (req: Request) => {
             ...existing.basicInfo,
             ...req.body.basicInfo
         },
+        templateId: req?.body?.templateId || existing?.templateId
     };
     const result = await LandingPageModel.findOneAndUpdate(
         { owner: user?.email, _id: id },
