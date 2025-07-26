@@ -3,4 +3,5 @@ export type TDomain ={
     siteId:string;
     verified:boolean;
     userId:string;
+    txtRecord:string;
 }

@@ -1,6 +1,5 @@
 import { NextFunction, Request, RequestHandler, Response } from "express";
 import { DomainModel } from "../modules/domains/domains.schema";
-import { AppError } from "../utils/app_error";
 
 const customDomainMapper: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     const host = req.headers["x-forwarded-host"]?.toString().toLowerCase();
@@ -8,7 +7,6 @@ const customDomainMapper: RequestHandler = async (req: Request, res: Response, n
     if (
         host?.includes("localhost") ||
         host?.includes("oyoubuilder.com") ||
-        host?.includes("store.oyoubuilder.com") ||
         host?.includes("api.oyoubuilder.com")
     ) {
         return next();
@@ -16,11 +14,7 @@ const customDomainMapper: RequestHandler = async (req: Request, res: Response, n
 
     try {
         const mapping = await DomainModel.findOne({ domain: host, verified: true });
-        if (!mapping) {
-            throw new AppError("Domain not found ", 404)
-        }
-
-        req.siteId = mapping.siteId;
+        req.siteId = mapping?.siteId;
         next();
     } catch (err) {
         next(err)
