@@ -68,7 +68,8 @@ const get_all_landing_page_from_db = async (req: Request) => {
 }
 // get single page
 const get_single_landing_page_from_db = async (req: Request) => {
-    const id = req?.params?.id;
+    console.log(req?.siteId)
+    const id = req?.siteId || req?.params?.id;
     const result = await LandingPageModel.findById(id).lean()
     return result;
 }

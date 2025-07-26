@@ -4,6 +4,7 @@ import express, { Request, Response } from 'express';
 import globalErrorHandler from './app/middlewares/global_error_handler';
 import notFound from './app/middlewares/not_found_api';
 import appRouter from './routes';
+import customDomainMapper from './app/middlewares/custom_domain_mapper';
 
 // define app
 const app = express()
@@ -24,6 +25,7 @@ app.use(express.json({ limit: "100mb" }))
 app.use(express.raw())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
+app.use(customDomainMapper)
 app.use("/api", appRouter)
 
 // stating point

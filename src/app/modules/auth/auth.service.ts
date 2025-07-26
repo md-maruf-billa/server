@@ -110,7 +110,7 @@ const login_user_from_db = async (payload: TLoginPayload) => {
     );
 
     if (!isPasswordMatch) {
-        throw new AppError('Invalid password', httpStatus.UNAUTHORIZED);
+        throw new AppError('Invalid password', httpStatus.FORBIDDEN);
     }
 
     const accessToken = jwtHelpers.generateToken(
@@ -194,7 +194,7 @@ const change_password_from_db = async (
     );
 
     if (!isCorrectPassword) {
-        throw new AppError('Old password is incorrect', httpStatus.UNAUTHORIZED);
+        throw new AppError('Old password is incorrect', httpStatus.FORBIDDEN);
     }
 
     const hashedPassword: string = await bcrypt.hash(payload.newPassword, 10);
@@ -248,7 +248,7 @@ const reset_password_into_db = async (
     } catch (err) {
         throw new AppError(
             'Your reset link is expire. Submit new link request!!',
-            httpStatus.UNAUTHORIZED,
+            httpStatus.FORBIDDEN,
         );
     }
 
@@ -257,7 +257,7 @@ const reset_password_into_db = async (
         throw new AppError('Account not found!!', httpStatus.NOT_FOUND);
     }
     if (isAccountExists.email !== email) {
-        throw new AppError('Invalid email', httpStatus.UNAUTHORIZED);
+        throw new AppError('Invalid email', httpStatus.FORBIDDEN);
     }
 
     const hashedPassword: string = await bcrypt.hash(newPassword, 10);
