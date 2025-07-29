@@ -7,4 +7,5 @@ export type TPlan = {
     pros: string[];
     cons: string[];
     isPopular?: boolean;
+    maxPage?: string;
 }

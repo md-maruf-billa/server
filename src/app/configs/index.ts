@@ -23,5 +23,15 @@ export const configs = {
         cloud_name: process.env.CLOUD_NAME,
         cloud_api_key: process.env.CLOUD_API_KEY,
         cloud_api_secret: process.env.CLOUD_API_SECRET
-    }
+    },
+    bkash: {
+        bkashPassword: process.env.BKASH_PASSWORD,
+        bkashAppKey: process.env.BKASH_APP_KEY,
+        userName: process.env.BKASH_USER_NAME,
+        bkashAppSecret: process.env.BKASH_APP_SECRET,
+        bkashGrantURL: process.env.BKASH_GRANT_URL,
+        bkashCreatePaymentURL: process.env.BKASH_CREATE_PAYMENT_URL,
+        bkashExecutePaymentURL: process.env.BKASH_EXECUTE_PAYMENT_URL
+    },
+    frontendURL: process.env.FRONT_END_URL
 }

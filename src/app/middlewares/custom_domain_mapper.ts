@@ -3,7 +3,6 @@ import { DomainModel } from "../modules/domains/domains.schema";
 
 const customDomainMapper: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     const host = req.headers["x-forwarded-host"]?.toString().toLowerCase();
-    console.log("browser host", host)
     if (
         host?.includes("localhost") ||
         host?.includes("oyoubuilder.com") ||

@@ -30,10 +30,4 @@ planRoute.get(
     plan_controllers.get_single_plan
 )
 
-planRoute.post(
-    "/subscribe/:planId",
-    auth("ADMIN", "USER"),
-    plan_controllers.subscribe_plan
-)
-
 export default planRoute;

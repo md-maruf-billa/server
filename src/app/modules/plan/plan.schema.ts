@@ -9,7 +9,8 @@ const planSchema = new Schema<TPlan>({
     durationUnit: { type: String, required: true },
     pros: { type: [String], required: false },
     cons: { type: [String], required: false },
-    isPopular: { type: Boolean, default: false }
+    isPopular: { type: Boolean, default: false },
+    maxPage: { type: String, default: "0" }
 }, {
     versionKey: false,
     timestamps: true

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import auth from "../../middlewares/auth";
+import checkPlanInfo from "../../middlewares/checkPlanInfo";
 import RequestValidator from "../../middlewares/request_validator";
 import uploader from "../../middlewares/uploader";
 import { landing_page_controllers } from "./landingPage.controller";
@@ -11,6 +12,7 @@ const landingPageRouter = Router();
 landingPageRouter.post(
     "/create-new-page",
     auth("USER", "ADMIN"),
+    checkPlanInfo(),
     RequestValidator(landingPage_validation.create),
     landing_page_controllers.create_new_landing_page
 )

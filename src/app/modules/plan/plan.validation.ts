@@ -22,7 +22,8 @@ const create = z.object({
     cons: z.array(
         z.string()
     ).optional(),
-    isPopular: z.boolean().default(false)
+    isPopular: z.boolean().default(false),
+    maxPage: z.string().optional()
 });
 
 const update = z.object({

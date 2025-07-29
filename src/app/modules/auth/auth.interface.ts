@@ -1,11 +1,13 @@
 export type TAccount = {
     email: string;
+    number:string;
     password: string;
     lastPasswordChange?: Date;
     isDeleted?: boolean;
     status?: "ACTIVE" | "BLOCK";
     role?: "USER" | "ADMIN",
     isVerified?: boolean,
+    
     isPlan?: boolean,
     planId?: string,
     planToken?: string

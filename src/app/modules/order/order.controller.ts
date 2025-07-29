@@ -4,7 +4,6 @@ import manageResponse from "../../utils/manage_response";
 import { order_services } from "./order.service";
 
 const create_order = catchAsync(async (req, res) => {
-    console.log(req?.body)
     const result = await order_services.create_order_into_db(req)
     manageResponse(res, {
         success: true,

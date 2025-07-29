@@ -43,20 +43,9 @@ const get_single_plan = catchAsync(async (req, res) => {
     })
 })
 
-const subscribe_plan = catchAsync(async (req, res) => {
-    const result = await plan_services.subscribe_plan_into_db(req)
-    manageResponse(res, {
-        success: true,
-        message: "Plan subscribe successful.",
-        statusCode: httpStatus.OK,
-        data: result
-    })
-})
-
 export const plan_controllers = {
     create_new_plan,
     update_plan,
     get_all_plan,
     get_single_plan,
-    subscribe_plan
 }
