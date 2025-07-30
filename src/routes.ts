@@ -6,6 +6,7 @@ import landingPageRouter from './app/modules/landingPage/landingPage.route';
 import orderRouter from './app/modules/order/order.route';
 import paymentRouter from './app/modules/payment/payment.route';
 import planRoute from './app/modules/plan/plan.route';
+import templateRouter from './app/modules/template/template.route';
 import userRoute from './app/modules/user/user.route';
 
 
@@ -19,7 +20,8 @@ const moduleRoutes = [
     { path: "/order", route: orderRouter },
     { path: "/dashboard", route: dashboardRouter },
     { path: "/domain", route: domainRoute },
-    { path: "/payment", route: paymentRouter }
+    { path: "/payment", route: paymentRouter },
+    { path: "/template", route: templateRouter }
 
 
 

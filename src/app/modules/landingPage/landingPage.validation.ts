@@ -22,7 +22,11 @@ const update = z.object({
         pageAddress: z.string().optional(),
         pageLogo: z.string().optional(),
     }),
-    templateId: z.number().optional()
+    templateId: z.number().optional(),
+    setting: z.object({
+        language: z.string().optional(),
+        productSoldCount: z.boolean().optional(),
+    }).optional(),
 })
 const uploadProduct = z.object({
     product: z.object({
