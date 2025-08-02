@@ -9,9 +9,9 @@ type TMailContent = {
 }
 
 const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true, // true for 465, false for other ports
+    host: configs?.email?.email_host!,
+    port: 587,
+    secure: false, // true for 465, false for other ports
     auth: {
         user: configs.email.app_email!,
         pass: configs.email.app_password!,
@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport({
 // ✅ Email Sender Function
 const sendMail = async (payload: TMailContent) => {
     const info = await transporter.sendMail({
-        from: 'support.oyoubuilder@gmail.com',
+        from: 'support@oyoubuilder.com',
         to: payload.to,
         subject: payload.subject,
         text: payload.textBody,
@@ -69,7 +69,7 @@ const sendMail = async (payload: TMailContent) => {
                 style=" margin-top: 60px; text-align: center;">
                 
                     <img style="width: 50px; height: 50px; border-radius: 50%;"
-                        src="https://collection.cloudinary.com/dzsh25p5b/5ae8432d8f36e9609696ccc53391694e"
+                        src="https://www.oyoubuilder.com/assets/OyouxLogo.webp"
                         alt="">
                
                 <p style="font-size: 12px;">The Support Team</p>

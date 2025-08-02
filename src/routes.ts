@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import analyticsRouter from './app/modules/analytics/analytics.route';
 import authRoute from './app/modules/auth/auth.route';
 import dashboardRouter from './app/modules/dashboard/dashboard.route';
 import domainRoute from './app/modules/domains/domains.route';
@@ -21,7 +22,8 @@ const moduleRoutes = [
     { path: "/dashboard", route: dashboardRouter },
     { path: "/domain", route: domainRoute },
     { path: "/payment", route: paymentRouter },
-    { path: "/template", route: templateRouter }
+    { path: "/template", route: templateRouter },
+    { path: "/analytic", route: analyticsRouter }
 
 
 

@@ -25,7 +25,18 @@ const verified_payment = catchAsync(async (req, res) => {
 })
 
 
+const get_all_payment = catchAsync(async (req, res) => {
+    const result = await payment_services.get_all_payment_from_db(req)
+    manageResponse(res, {
+        success: true,
+        message: "All payments fetched",
+        statusCode: 200,
+        data: result
+    })
+})
+
 export const payment_controller = {
     initiate_payment,
-    verified_payment
+    verified_payment,
+    get_all_payment
 }

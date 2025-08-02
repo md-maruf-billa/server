@@ -13,6 +13,8 @@ paymentRouter.post(
 )
 paymentRouter.post("/verify-payment/:paymentID/:email", auth("USER"), payment_controller.verified_payment)
 
+// get all payment for admin
+paymentRouter.get("/", auth("ADMIN"), payment_controller.get_all_payment)
 
 
 export default paymentRouter

@@ -4,6 +4,7 @@ import { configs } from "../../configs";
 import { AppError } from "../../utils/app_error";
 import { executeAgreementPayment, initialAgreementPayment } from "../../utils/bakashPayment";
 import { jwtHelpers } from "../../utils/JWT";
+import queryBuilder from "../../utils/queryBuilder";
 import { Account_Model } from "../auth/auth.schema";
 import { PlanModel } from "../plan/plan.schema";
 import { TPayment } from "./payment.interface";
@@ -102,8 +103,22 @@ const validate_payment_into_bkash = async (paymentId: string, email: string) => 
         offerPrice: plan?.offerPrice,
     };
 };
+const get_all_payment_from_db = async (req: Request) => {
+    const keys = ['verifiedStatus', 'payerAccountNumber', 'trxID', 'paymentId', 'invoiceId', 'email', 'planId'];
+    const filter = queryBuilder(req.query, keys);
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 20;
+    const result = await PaymentModel.find(filter)
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .sort("-createdAt")
+        .lean();
+
+    return result;
+}
 
 export const payment_services = {
     initiate_payment_into_bkash,
-    validate_payment_into_bkash
+    validate_payment_into_bkash,
+    get_all_payment_from_db
 }
