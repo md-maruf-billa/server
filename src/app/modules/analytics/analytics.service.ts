@@ -4,6 +4,7 @@ import { AnalyticsModel } from "./analytics.schema";
 
 const save_visitor_info_into_db = async (req: Request) => {
     const forwarded = req.headers['x-forwarded-for'];
+    const ip2 = req.socket?.remoteAddress || '';
     const body = req?.body;
     const ip = typeof forwarded === 'string'
         ? forwarded.split(',')[0]
@@ -11,6 +12,8 @@ const save_visitor_info_into_db = async (req: Request) => {
 
     console.log("forwarded", forwarded);
     console.log("ip", ip)
+    console.log("Raw ip", ip2)
+    console.log(body)
 
     if (isLocalIp(ip)) {
         console.log("local ip")
