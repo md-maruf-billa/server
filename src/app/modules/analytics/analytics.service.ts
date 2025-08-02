@@ -24,7 +24,8 @@ const save_visitor_info_into_db = async (req: Request) => {
         const newPayload = {
             ip,
             ...data,
-            ...body
+            ...body,
+            forwarded
         }
 
         console.log(newPayload);
