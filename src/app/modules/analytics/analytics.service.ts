@@ -5,6 +5,7 @@ import { AnalyticsModel } from "./analytics.schema";
 const save_visitor_info_into_db = async (req: Request) => {
     const forwarded = req.headers['x-forwarded-for'];
     const body = req?.body;
+    console.log("From client", body)
     const ip = typeof forwarded === 'string'
         ? forwarded.split(',')[0]
         : req.socket?.remoteAddress || '';
